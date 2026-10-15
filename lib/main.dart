@@ -21,5 +21,4 @@ class MyApp extends StatelessWidget {
       home: DetailScreen(candi: candiList[0],),
     );
   }
-class DetailScreen extends StatelessWidget {
 }
