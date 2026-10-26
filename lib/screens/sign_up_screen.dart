@@ -14,6 +14,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   String _errorText = '';
+  bool _isSignedUp = false;
   bool _obscurePassword = true;
 
   @override
