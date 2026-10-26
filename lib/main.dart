@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: DetailScreen(candi: candiList[0],),
       // home: ProfileScreen(),
-      // home: SignInScreen(),
-      home: SignUpScreen(),
+      home: SignInScreen(),
+      // home: SignUpScreen(),
     );
   }
 }
