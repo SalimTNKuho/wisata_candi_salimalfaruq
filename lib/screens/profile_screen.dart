@@ -76,53 +76,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Divider(color: Colors.deepPurple[100],),
               SizedBox(height: 4,),
               // TODO: 3. Buat ProfileInfo (info pengguna)
-              Row(children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 3,
-                  child: const Row(children: [
-                    Icon(Icons.lock, color: Colors.amber),
-                    SizedBox(width: 8),
-                    Text('Pengguna', style: TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold)),
-                  ]),
-                ),
-                Expanded(
-                  child: Text(': $userName',
-                      style: const TextStyle(fontSize: 18)),
-                ),
-              ]),
+              // Username
+              ProfileInfoItem(
+                icon: Icons.lock,
+                label: 'Pengguna',
+                value: userName,
+                iconColor: Colors.amber,
+              ),
+              // Row(children: [
+              //   SizedBox(
+              //     width: MediaQuery.of(context).size.width / 3,
+              //     child: const Row(children: [
+              //       Icon(Icons.lock, color: Colors.amber),
+              //       SizedBox(width: 8),
+              //       Text('Pengguna', style: TextStyle(
+              //           fontSize: 18, fontWeight: FontWeight.bold)),
+              //     ]),
+              //   ),
+              //   Expanded(
+              //     child: Text(': $userName',
+              //         style: const TextStyle(fontSize: 18)),
+              //   ),
+              // ]),
               SizedBox(height: 4,),
-              Row(children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 3,
-                  child: const Row(children: [
-                    Icon(Icons.person, color: Colors.blue),
-                    SizedBox(width: 8),
-                    Text('Nama', style: TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold)),
-                  ]),
-                ),
-                Expanded(
-                  child: Text(': $fullName',
-                      style: const TextStyle(fontSize: 18)),
-                ),
-              ]),
+              // Fullname
+              ProfileInfoItem(
+                icon: Icons.person,
+                label: 'Nama',
+                value: fullName,
+                showEditIcon: isSignedIn,
+                onEditPressed: () => debugPrint('Icon edit ditekan'),
+                iconColor: Colors.blue,
+              ),
+              // Row(children: [
+              //   SizedBox(
+              //     width: MediaQuery.of(context).size.width / 3,
+              //     child: const Row(children: [
+              //       Icon(Icons.person, color: Colors.blue),
+              //       SizedBox(width: 8),
+              //       Text('Nama', style: TextStyle(
+              //           fontSize: 18, fontWeight: FontWeight.bold)),
+              //     ]),
+              //   ),
+              //   Expanded(
+              //     child: Text(': $fullName',
+              //         style: const TextStyle(fontSize: 18)),
+              //   ),
+              // ]),
               SizedBox(height: 4,), // permisah
-              Row(children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 3,
-                  child: const Row(children: [
-                    Icon(Icons.favorite, color: Colors.red),
-                    SizedBox(width: 8),
-                    Text('Favorit', style: TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold)),
-                  ]),
-                ),
-                Expanded(
-                  child: Text(': $favoriteCandiCount',
-                      style: const TextStyle(fontSize: 18)),
-                ),
-              ]),
+              // FavoriteCandiCount
+              ProfileInfoItem(
+                icon: Icons.favorite,
+                label: 'Favorit',
+                value: favoriteCandiCount > 0 ? '$favoriteCandiCount' : '',
+                iconColor: Colors.red,
+              ),
+              // Row(children: [
+              //   SizedBox(
+              //     width: MediaQuery.of(context).size.width / 3,
+              //     child: const Row(children: [
+              //       Icon(Icons.favorite, color: Colors.red),
+              //       SizedBox(width: 8),
+              //       Text('Favorit', style: TextStyle(
+              //           fontSize: 18, fontWeight: FontWeight.bold)),
+              //     ]),
+              //   ),
+              //   Expanded(
+              //     child: Text(': $favoriteCandiCount',
+              //         style: const TextStyle(fontSize: 18)),
+              //   ),
+              // ]),
               SizedBox(height: 4,),
               // TODO: 4. Buat ProfileActions (tombol sign in/out)
               const SizedBox(height: 4),
