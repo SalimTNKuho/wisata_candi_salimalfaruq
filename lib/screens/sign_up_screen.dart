@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -85,6 +86,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ElevatedButton(
                     onPressed: () {},
                     child: const Text('Sign Up'),
+                  ),const SizedBox(height: 10),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Sudah punya akun? ',
+                      style: const TextStyle(fontSize: 16, color: Colors.deepPurple),
+                      children: [
+                        TextSpan(
+                          text: 'Masuk di sini.',
+                          style: const TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline),
+                          recognizer: TapGestureRecognizer()..onTap = () {},
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
