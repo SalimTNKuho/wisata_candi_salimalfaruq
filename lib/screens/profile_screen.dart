@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wisata_candi_salimalfaruq/widgets/profile_info_item.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
