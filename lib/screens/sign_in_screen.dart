@@ -9,18 +9,18 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  // TODO: 1. Deklarasikan variabel
+  final TextEditingController _usernameController =
+  TextEditingController();
+  final TextEditingController _passwordController =
+  TextEditingController();
+
+  String _errorText = '';
+  bool _isSignedIn = false;
+  bool _obscurePassword = true;
+  
   @override
   Widget build(BuildContext context) {
-    // TODO: 1. Deklarasikan variabel
-    final TextEditingController _usernameController =
-    TextEditingController();
-    final TextEditingController _passwordController =
-    TextEditingController();
-
-    String _errorText = '';
-    bool _isSignedIn = false;
-    bool _obscurePassword = true;
-
     return Scaffold(
       // TODO: 2. Pasang AppBar
       appBar: AppBar(title: const Text('Sign In')),
