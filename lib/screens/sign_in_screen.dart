@@ -18,7 +18,7 @@ class _SignInScreenState extends State<SignInScreen> {
   String _errorText = '';
   bool _isSignedIn = false;
   bool _obscurePassword = true;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,11 +31,11 @@ class _SignInScreenState extends State<SignInScreen> {
               padding: const EdgeInsets.all(16),
               child: Form(
                 child:  Column(
-                // TODO: 4. Atur alignment
+                // TODO: 4. Atur mainAxisAlignment dan crossAxisAlignment
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // TODO: 5. TextFormField nama pengguna
+                  // TODO: 5. Pasang TextFormField Nama Pengguna
                   TextFormField(
                     controller: _usernameController,
                     decoration: const InputDecoration(
@@ -43,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  // TODO: 6. TextFormField kata sandi
+                  // TODO: 6. Pasang TextFormField Password/Kata Sandi
                   const SizedBox(height: 20),
                   TextFormField(
                     controller: _passwordController,
@@ -64,7 +64,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     obscureText: _obscurePassword,
                   ),
-                  // TODO: 7. ElevatedButton Sign In
+                  // TODO: 7. Pasang ElevatedButton Sign In
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {},
