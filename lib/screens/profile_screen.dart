@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wisata_candi_salimalfaruq/widgets/profile_info_item.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,6 +15,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String fullName = '';
   String userName = '';
   int favoriteCandiCount = 0;
+
+  // TODO: 5. Implementasi fungsi signIn
+  void signIn() {
+    setState(() {
+      isSignedIn = !isSignedIn;
+    });
+  }
+
+  // TODO: 6. Implementasi fungsi signOut
+  void signOut() {
+    setState(() {
+      isSignedIn = !isSignedIn;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +125,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ]),
               SizedBox(height: 4,),
               // TODO: 4. Buat ProfileActions (tombol sign in/out)
-
-
+              const SizedBox(height: 4),
+              Divider(color: Colors.deepPurple[100]),
+              const SizedBox(height: 20),
+              isSignedIn
+                  ? TextButton(onPressed: signOut, child: const Text('Sign Out'))
+                  : TextButton(onPressed: signIn, child: const Text('Sign In')),
             ],
           ),
         ],
