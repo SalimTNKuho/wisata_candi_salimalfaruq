@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderScope;
 import 'package:wisata_candi_salimalfaruq/data/candi_data.dart';
 import 'package:wisata_candi_salimalfaruq/screens/detail_screen.dart';
 import 'package:wisata_candi_salimalfaruq/screens/profile_screen.dart';
@@ -11,12 +12,14 @@ import 'providers/auth_provider.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-      ],
-      child: const MyApp(),
+    ProviderScope(
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+          ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }

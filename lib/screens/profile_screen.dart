@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart'
+    hide ChangeNotifierProvider, Consumer, Provider;
 import 'package:wisata_candi_salimalfaruq/providers/favorite_provider.dart';
 import 'package:wisata_candi_salimalfaruq/providers/auth_provider.dart';
 import 'package:wisata_candi_salimalfaruq/widgets/profile_info_item.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() =>
+  ConsumerState<ProfileScreen> createState() =>
       _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   // TODO: 1. Deklarasikan variabel
   bool isSignedIn = false;
   String fullName = '';
@@ -35,8 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteCount =
-        context.watch<FavoriteProvider>().count;
+    final favoriteCount = ref.watch(favoriteProvider).length;
     final auth = context.watch<AuthProvider>();
 
     return Scaffold(

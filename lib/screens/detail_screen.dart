@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart'
+    hide ChangeNotifierProvider, Consumer, Provider;
 import 'package:wisata_candi_salimalfaruq/models/candi.dart';
-import 'package:provider/provider.dart';
 import 'package:wisata_candi_salimalfaruq/providers/favorite_provider.dart';
 import 'package:wisata_candi_salimalfaruq/providers/auth_provider.dart';
 import 'package:wisata_candi_salimalfaruq/screens/profile_screen.dart';
 
-
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends ConsumerWidget {
   final Candi candi;
-  const DetailScreen({super.key, required this.candi});
+  final ValueNotifier<int> counter = ValueNotifier<int>(0);
+
+  DetailScreen({super.key, required this.candi});
 
   @override
-  Widget build(BuildContext context) {
-    // di dalam build() DetailScreen
-    final isFav = context
-        .watch<FavoriteProvider>()
-        .isFavorite(candi.name);
+  Widget build(BuildContext context, WidgetRef ref) {
+    // di ConsumerWidget
+    final favs = ref.watch(favoriteProvider);
+    final isFav = favs.contains(candi.name);
+    final auth = context.watch<AuthProvider>();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -74,16 +77,36 @@ class DetailScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          context
-                              .read<FavoriteProvider>()
-                              .toggle(candi.name);
-                        },
-                        icon: Icon(
-                          isFav ? Icons.favorite : Icons.favorite_border,
-                          color: isFav ? Colors.red : null,
-                        ),
+                      Row(
+                        children: [
+                          // menampilkan
+                          ValueListenableBuilder<int>(
+                            valueListenable: counter,
+                            builder: (context, value, child) =>
+                                Text('Favorit: $value'),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              if (!auth.isSignedIn) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Silakan Sign In terlebih dahulu'),
+                                  ),
+                                );
+                                return;
+                              }
+                              // mengubah
+                              counter.value++;
+                              ref
+                                  .read(favoriteProvider.notifier)
+                                  .toggle(candi.name);
+                            },
+                            icon: Icon(
+                              isFav ? Icons.favorite : Icons.favorite_border,
+                              color: isFav ? Colors.red : null,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
