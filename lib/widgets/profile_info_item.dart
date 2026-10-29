@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wisata_candi_salimalfaruq/providers/favorite_provider.dart';
 
 class ProfileInfoItem extends StatelessWidget {
   final IconData icon;

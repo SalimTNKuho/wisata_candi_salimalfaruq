@@ -4,10 +4,23 @@ import 'package:wisata_candi_salimalfaruq/screens/detail_screen.dart';
 import 'package:wisata_candi_salimalfaruq/screens/profile_screen.dart';
 import 'package:wisata_candi_salimalfaruq/screens/sign_in_screen.dart';
 import 'package:wisata_candi_salimalfaruq/screens/sign_up_screen.dart';
+import 'package:provider/provider.dart';
+import 'providers/favorite_provider.dart';
+import 'providers/auth_provider.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

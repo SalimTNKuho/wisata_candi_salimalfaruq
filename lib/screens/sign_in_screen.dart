@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
+import 'package:wisata_candi_salimalfaruq/providers/auth_provider.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -16,8 +18,15 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController();
 
   String _errorText = '';
-  bool _isSignedIn = false;
+  // bool _isSignedIn = false;
   bool _obscurePassword = true;
+
+  void _signIn() {
+    final name = _usernameController.text.trim();
+    if (name.isEmpty) return;
+    context.read<AuthProvider>().signIn(name);
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wisata_candi_salimalfaruq/providers/favorite_provider.dart';
+import 'package:wisata_candi_salimalfaruq/providers/auth_provider.dart';
 import 'package:wisata_candi_salimalfaruq/widgets/profile_info_item.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -14,7 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool isSignedIn = false;
   String fullName = '';
   String userName = '';
-  int favoriteCandiCount = 0;
+  // int favoriteCandiCount = 0;
 
   // TODO: 5. Implementasi fungsi signIn
   void signIn() {
@@ -32,6 +35,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final favoriteCount =
+        context.watch<FavoriteProvider>().count;
+    final auth = context.watch<AuthProvider>();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -128,7 +135,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ProfileInfoItem(
                 icon: Icons.favorite,
                 label: 'Favorit',
-                value: favoriteCandiCount > 0 ? '$favoriteCandiCount' : '',
+                value: favoriteCount > 0 ? '$favoriteCount' : '',
                 iconColor: Colors.red,
               ),
               // Row(children: [
@@ -151,8 +158,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 4),
               Divider(color: Colors.deepPurple[100]),
               const SizedBox(height: 20),
-              isSignedIn
-                  ? TextButton(onPressed: signOut, child: const Text('Sign Out'))
+              auth.isSignedIn
+                  ? TextButton(onPressed: () =>
+                  context.read<AuthProvider>().signOut(),
+                  child: const Text('Sign Out'))
                   : TextButton(onPressed: signIn, child: const Text('Sign In')),
             ],
           ),
