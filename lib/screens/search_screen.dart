@@ -78,63 +78,90 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           // TODO 5: Buat ListView hasil pencarian sebagai anak dari Column
           Expanded(
-            child: ListView.builder(
-              itemCount: _filteredCandis.length,
-              itemBuilder: (context, index) {
-                final candi = _filteredCandis[index];
-                // TODO 8: Implementasi GestureDetector dan Hero animation
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailScreen(candi: candi),
-                      ),
-                    );
-                  },
-                  child: Card(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 4),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          width: 100,
-                          height: 100,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Hero(
-                              tag: candi.imageAsset,
-                              child: Image.asset(
-                                candi.imageAsset,
-                                fit: BoxFit.cover,
+            child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(
+                dragDevices: {
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.mouse,
+                  PointerDeviceKind.trackpad,
+                },
+              ),
+              child: ListView.builder(
+                itemCount: _filteredCandis.length,
+                itemBuilder: (context, index) {
+                  final candi = _filteredCandis[index];
+                  // TODO 8: Implementasi GestureDetector dan Hero animation
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailScreen(candi: candi),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 4),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            width: 100,
+                            height: 100,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Hero(
+                                tag: candi.imageAsset,
+                                child: Image.asset(
+                                  candi.imageAsset,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                candi.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  candi.name,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(candi.location),
-                            ],
+                                const SizedBox(height: 4),
+                                RichText(
+                                  text: TextSpan(
+                                    text: candi.location,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey[700],
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                DetailScreen(candi: candi),
+                                          ),
+                                        );
+                                      },
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ],
