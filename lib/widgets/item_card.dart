@@ -66,7 +66,7 @@ class ItemCard extends StatelessWidget {
               child: Text(
                 candi.type,
                 style: TextStyle(
-                    fontSize: 12,
+                  fontSize: 12,
                 ),
               ),
             ),
