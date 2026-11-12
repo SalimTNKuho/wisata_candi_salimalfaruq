@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderScope;
 import 'package:wisata_candi_salimalfaruq/data/candi_data.dart';
 import 'package:wisata_candi_salimalfaruq/screens/detail_screen.dart';
+import 'package:wisata_candi_salimalfaruq/screens/home_screen.dart';
 import 'package:wisata_candi_salimalfaruq/screens/profile_screen.dart';
 import 'package:wisata_candi_salimalfaruq/screens/sign_in_screen.dart';
 import 'package:wisata_candi_salimalfaruq/screens/sign_up_screen.dart';
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
       // home: ProfileScreen(),
       // home: SignInScreen(),
       // home: SignUpScreen(),
-      home: SearchScreen(),
+      // home: SearchScreen(),
+      home: HomeScreen(),
     );
   }
 }
