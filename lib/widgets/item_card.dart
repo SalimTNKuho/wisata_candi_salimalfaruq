@@ -42,7 +42,7 @@ class ItemCard extends StatelessWidget {
               ),
             ),
             // TODO 4: Buat Text sebagai anak dari Column
-            // Text 1
+            // Text 1 (nama candi)
             Padding(
               padding: const EdgeInsets.only(
                 left: 16,
@@ -57,7 +57,7 @@ class ItemCard extends StatelessWidget {
               ),
             ),
             // TODO 5: Buat Text sebagai anak dari Column
-            // Text 2
+            // Text 2 (tipe candi)
             Padding(
               padding: const EdgeInsets.only(
                 left: 16,
@@ -65,7 +65,9 @@ class ItemCard extends StatelessWidget {
               ),
               child: Text(
                 candi.type,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 12,
+                ),
               ),
             ),
           ],
